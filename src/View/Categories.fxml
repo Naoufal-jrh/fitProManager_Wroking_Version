@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -36,7 +37,7 @@
                   <Font name="Arial" size="16.0" />
                </font>
             </Button>
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#toClients" prefHeight="56.0" prefWidth="231.0" style="-fx-background-color: #EBE8F9;" text="CLIENTS" textAlignment="CENTER">
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#toClient" prefHeight="56.0" prefWidth="231.0" style="-fx-background-color: #EBE8F9;" text="CLIENTS" textAlignment="CENTER">
                <font>
                   <Font name="Arial" size="16.0" />
                </font>
@@ -58,25 +59,27 @@
             </Button>
          </children>
       </VBox>
-      <Pane layoutX="231.0" prefHeight="587.0" prefWidth="731.0" style="-fx-background-color: #ffff;">
+      <Pane fx:id="errorMes" layoutX="231.0" prefHeight="587.0" prefWidth="731.0" style="-fx-background-color: #ffff;">
          <children>
             <Label alignment="CENTER" layoutX="155.0" layoutY="45.0" lineSpacing="1.0" prefHeight="44.0" prefWidth="401.0" text="Categories management" textFill="#4d00b9">
                <font>
                   <Font name="Arial" size="35.0" />
                </font>
             </Label>
-            <TableView layoutX="16.0" layoutY="229.0" prefHeight="323.0" prefWidth="679.0">
+            <TableView fx:id="categoryTable" layoutX="16.0" layoutY="229.0" prefHeight="323.0" prefWidth="679.0">
               <columns>
-                <TableColumn prefWidth="219.2000274658203" text="id" />
-                <TableColumn prefWidth="240.0" text="name" />
-                  <TableColumn prefWidth="228.00006103515625" text="members  number" />
+                <TableColumn fx:id="idCategorie" prefWidth="219.2000274658203" text="id" />
+                <TableColumn fx:id="nameCategorie" prefWidth="240.0" text="name" />
+                  <TableColumn fx:id="membersCategorie" prefWidth="228.00006103515625" text="members  number" />
               </columns>
             </TableView>
-            <Button layoutX="16.0" layoutY="158.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="307.0" style="-fx-background-color: #e0dcf2;" text="Add new categorie">
+            <Button layoutX="390.0" layoutY="169.0" mnemonicParsing="false" onAction="#addCategorie" prefHeight="34.0" prefWidth="145.0" style="-fx-background-color: orange;" text="Add new categorie">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
+            <TextField fx:id="catgorieNameField" layoutX="14.0" layoutY="169.0" prefHeight="34.0" prefWidth="376.0" promptText="enter the name of new categorie" />
+            <Label fx:id="errorMess" layoutX="14.0" layoutY="152.0" prefHeight="17.0" prefWidth="376.0" textFill="RED" />
          </children>
       </Pane>
    </children>

@@ -1,5 +1,6 @@
 package Controller;
 
+import Module.Module;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,8 +14,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.List;
-
-import Module.Module;
 
 public class ClientAddController  {
     private Stage stage;
@@ -146,6 +145,8 @@ public class ClientAddController  {
             category.getItems().add(_Categorie.get(i).getNomCategorie());
         }
     }
+
+    @FXML
     public void filterOffers(){
         offer.getItems().clear();
         String categorie =  category.getValue();

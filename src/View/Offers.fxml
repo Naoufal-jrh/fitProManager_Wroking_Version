@@ -66,15 +66,15 @@
                   <Font name="Arial" size="35.0" />
                </font>
             </Label>
-            <TableView layoutX="16.0" layoutY="275.0" prefHeight="300.0" prefWidth="707.0">
+            <TableView fx:id="offerTable" layoutX="16.0" layoutY="275.0" prefHeight="300.0" prefWidth="707.0">
                <columns>
-                  <TableColumn prefWidth="123.20004272460938" text="id" />
-                  <TableColumn prefWidth="175.20001220703125" text="name" />
-                  <TableColumn minWidth="0.0" prefWidth="243.99993896484375" text="price" />
-                  <TableColumn prefWidth="161.5999755859375" text="duration" />
+                  <TableColumn fx:id="offerId" prefWidth="123.20004272460938" text="id" />
+                  <TableColumn fx:id="offerName" prefWidth="175.20001220703125" text="name" />
+                  <TableColumn fx:id="offerPrice" minWidth="0.0" prefWidth="243.99993896484375" text="price" />
+                  <TableColumn fx:id="offerDuration" prefWidth="161.5999755859375" text="duration" />
                </columns>
             </TableView>
-            <Button layoutX="14.0" layoutY="202.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="341.0" style="-fx-background-color: #e0dcf2;" text="Add new offer">
+            <Button layoutX="14.0" layoutY="202.0" mnemonicParsing="false" onAction="#toAddOffre" prefHeight="44.0" prefWidth="341.0" style="-fx-background-color: #e0dcf2;" text="Add new offer">
                <font>
                   <Font size="15.0" />
                </font>

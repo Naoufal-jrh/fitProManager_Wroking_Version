@@ -1,18 +1,19 @@
 package Controller;
 
+import Module.Module;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
-
 import java.io.IOException;
 import java.util.List;
-
-import Module.Module;
 
 import static javafx.scene.control.ButtonBar.ButtonData.OK_DONE;
 
@@ -79,23 +80,26 @@ public class ClientController {
 
     @FXML
     public void initialize(){
-        //this function fills the table from the database
+        //this function delay the execution of the operation until after it shows the interface
+        Platform.runLater(() -> {
+            // this function fills the table from the database
 
-        //get the members from the database and return in a List
-        List<Membre> membersList = Module.getMembres("SELECT * FROM membre");
+            // get the members from the database and return in a List
+            List<Membre> membersList = Module.getMembres("SELECT * FROM membre");
 
-        //select what properties of the object Membre will be displays in the columns
-        ClientIdColumn.setCellValueFactory(new PropertyValueFactory<>("idPersonne"));
-        ClientFirstNameColumn.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-        ClientLastNameColumn.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        ClientMailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
-        ClientCinColumn.setCellValueFactory(new PropertyValueFactory<>("cin"));
-        ClientAdateColumn.setCellValueFactory(new PropertyValueFactory<>("dateAdherence"));
+            // select what properties of the object Membre will be displayed in the columns
+            ClientIdColumn.setCellValueFactory(new PropertyValueFactory<>("idPersonne"));
+            ClientFirstNameColumn.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+            ClientLastNameColumn.setCellValueFactory(new PropertyValueFactory<>("nom"));
+            ClientMailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
+            ClientCinColumn.setCellValueFactory(new PropertyValueFactory<>("cin"));
+            ClientAdateColumn.setCellValueFactory(new PropertyValueFactory<>("dateAdherence"));
 
-        //transform the List to an ObservableList
-        ObservableList<Membre> observableMemberList = FXCollections.observableArrayList(membersList);
-        // Set the ObservableList as the data source for the table
-        clientTable.setItems(observableMemberList);
+            // transform the List to an ObservableList
+            ObservableList<Membre> observableMemberList = FXCollections.observableArrayList(membersList);
+            // Set the ObservableList as the data source for the table
+            clientTable.setItems(observableMemberList);
+        });
     }
 
 
