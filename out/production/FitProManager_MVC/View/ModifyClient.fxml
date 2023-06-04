@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="587.0" prefWidth="960.0" style="-fx-background-color: #ffff;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ClientModifyController">
+    <children>
+        <Text fill="#ff5900" layoutX="55.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modify Member">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="24.0" />
+            </font>
+        </Text>
+        <GridPane layoutX="55.0" layoutY="102.0" prefHeight="300.0" prefWidth="850.0" vgap="10.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <VBox prefHeight="250.0" prefWidth="100.0">
+                    <children>
+                        <Text fill="#78747e" strokeType="OUTSIDE" strokeWidth="0.0" text="First name">
+                            <font>
+                                <Font name="Arial Rounded MT Bold" size="14.0" />
+                            </font>
+                        </Text>
+                        <TextField fx:id="firstname" prefHeight="50.0" prefWidth="405.0" VBox.vgrow="NEVER">
+                            <VBox.margin>
+                                <Insets right="20.0" />
+                            </VBox.margin>
+                        </TextField>
+                    </children>
+                </VBox>
+                <VBox prefHeight="250.0" prefWidth="100.0" GridPane.columnIndex="1">
+                    <children>
+                        <Text fill="#78747e" strokeType="OUTSIDE" strokeWidth="0.0" text="Last name">
+                            <font>
+                                <Font name="Arial Rounded MT Bold" size="14.0" />
+                            </font>
+                        </Text>
+                        <TextField fx:id="lastname" prefHeight="50.0">
+                            <VBox.margin>
+                                <Insets right="20.0" />
+                            </VBox.margin>
+                        </TextField>
+                    </children>
+                </VBox>
+                <VBox prefHeight="250.0" prefWidth="100.0" GridPane.rowIndex="1">
+                    <children>
+                        <Text fill="#78747e" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
+                            <font>
+                                <Font name="Arial Rounded MT Bold" size="14.0" />
+                            </font>
+                        </Text>
+                        <TextField fx:id="email" prefHeight="50.0" VBox.vgrow="NEVER">
+                            <VBox.margin>
+                                <Insets right="20.0" />
+                            </VBox.margin>
+                        </TextField>
+                    </children>
+                </VBox>
+                <VBox prefHeight="250.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <children>
+                        <Text fill="#78747e" strokeType="OUTSIDE" strokeWidth="0.0" text="CIN">
+                            <font>
+                                <Font name="Arial Rounded MT Bold" size="14.0" />
+                            </font>
+                        </Text>
+                        <TextField fx:id="cin" prefHeight="50.0" VBox.vgrow="NEVER">
+                            <VBox.margin>
+                                <Insets right="20.0" />
+                            </VBox.margin>
+                        </TextField>
+                    </children>
+                </VBox>
+                <VBox prefHeight="250.0" prefWidth="100.0" GridPane.rowIndex="2">
+                    <children>
+                        <Text fill="#78747e" strokeType="OUTSIDE" strokeWidth="0.0" text="Adress">
+                            <font>
+                                <Font name="Arial Rounded MT Bold" size="14.0" />
+                            </font>
+                        </Text>
+                        <TextField fx:id="adress" prefHeight="50.0" VBox.vgrow="NEVER">
+                            <VBox.margin>
+                                <Insets right="20.0" />
+                            </VBox.margin>
+                        </TextField>
+                    </children>
+                </VBox>
+                <VBox prefHeight="250.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <children>
+                        <Text fill="#78747e" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender">
+                            <font>
+                                <Font name="Arial Rounded MT Bold" size="14.0" />
+                            </font>
+                        </Text>
+                        <ComboBox fx:id="gender" prefHeight="50.0" prefWidth="431.0">
+                            <VBox.margin>
+                                <Insets right="20.0" />
+                            </VBox.margin>
+                        </ComboBox>
+                    </children>
+                </VBox>
+                <VBox prefHeight="250.0" prefWidth="100.0" GridPane.rowIndex="3">
+                    <children>
+                        <Text fill="#78747e" strokeType="OUTSIDE" strokeWidth="0.0" text="Birth date">
+                            <font>
+                                <Font name="Arial Rounded MT Bold" size="14.0" />
+                            </font>
+                        </Text>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                            <children>
+                                <TextField fx:id="birthdated" prefHeight="50.0" promptText="dd">
+                                    <HBox.margin>
+                                        <Insets right="20.0" />
+                                    </HBox.margin>
+                                </TextField>
+                                <TextField fx:id="birthdatem" prefHeight="50.0" promptText="mm">
+                                    <HBox.margin>
+                                        <Insets right="20.0" />
+                                    </HBox.margin>
+                                </TextField>
+                                <TextField fx:id="birthdatey" prefHeight="50.0" promptText="yyyy">
+                                    <HBox.margin>
+                                        <Insets right="20.0" />
+                                    </HBox.margin>
+                                </TextField>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+                <VBox prefHeight="250.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                    <children>
+                        <Text fill="#78747e" strokeType="OUTSIDE" strokeWidth="0.0" text="Adhesion date">
+                            <font>
+                                <Font name="Arial Rounded MT Bold" size="14.0" />
+                            </font>
+                        </Text>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                            <children>
+                                <TextField fx:id="adhesiondated" prefHeight="50.0" promptText="dd">
+                                    <HBox.margin>
+                                        <Insets right="20.0" />
+                                    </HBox.margin>
+                                </TextField>
+                                <TextField fx:id="adhesiondatem" prefHeight="50.0" promptText="mm">
+                                    <HBox.margin>
+                                        <Insets right="20.0" />
+                                    </HBox.margin>
+                                </TextField>
+                                <TextField fx:id="adhesiondatey" prefHeight="50.0" promptText="yyyy">
+                                    <HBox.margin>
+                                        <Insets right="20.0" />
+                                    </HBox.margin>
+                                </TextField>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </children>
+        </GridPane>
+        <Button layoutX="55.0" layoutY="432.0" mnemonicParsing="false" onAction="#modifyClient" prefHeight="50.0" prefWidth="186.0" style="-fx-background-color: #7640cc;" text="Modify" textFill="WHITE">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="18.0" />
+            </font>
+        </Button>
+        <Button mnemonicParsing="false" onAction="#toClients" prefHeight="36.0" prefWidth="35.0" style="-fx-background-color: #f44a4a;" text="X" textFill="WHITE">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="21.0" />
+            </font>
+        </Button>
+    </children>
+    <padding>
+        <Insets left="50.0" right="50.0" />
+    </padding>
+</AnchorPane>

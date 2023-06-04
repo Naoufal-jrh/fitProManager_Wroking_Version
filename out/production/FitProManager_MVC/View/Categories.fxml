@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="587.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CategorieControler">
+   <children>
+      <VBox alignment="CENTER" prefHeight="587.0" prefWidth="231.0" style="-fx-background-color: #EBE8F9;">
+         <children>
+            <Pane prefHeight="179.0" prefWidth="231.0">
+               <children>
+                  <ImageView fitHeight="98.0" fitWidth="126.0" layoutX="53.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/logo.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="#ff5e00" layoutX="-16.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" FitPro Manager" textAlignment="CENTER" wrappingWidth="256.130859375">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="23.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#toHome" prefHeight="56.0" prefWidth="231.0" style="-fx-background-color: #EBE8F9;" text="HOME" textAlignment="CENTER">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#toClients" prefHeight="56.0" prefWidth="231.0" style="-fx-background-color: #EBE8F9;" text="CLIENTS" textAlignment="CENTER">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="56.0" prefWidth="231.0" style="-fx-background-color: #dfdaf7;" text="CATEGORIES" textAlignment="CENTER">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#toOffers" prefHeight="56.0" prefWidth="231.0" style="-fx-background-color: #EBE8F9;" text="OFFERS" textAlignment="CENTER">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#toLogin" prefHeight="56.0" prefWidth="231.0" style="-fx-background-color: #EBE8F9;" text="LOG OUT" textAlignment="CENTER">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+      <Pane layoutX="231.0" prefHeight="587.0" prefWidth="731.0" style="-fx-background-color: #ffff;">
+         <children>
+            <Label alignment="CENTER" layoutX="155.0" layoutY="45.0" lineSpacing="1.0" prefHeight="44.0" prefWidth="401.0" text="Categories management" textFill="#4d00b9">
+               <font>
+                  <Font name="Arial" size="35.0" />
+               </font>
+            </Label>
+            <TableView layoutX="16.0" layoutY="229.0" prefHeight="323.0" prefWidth="679.0">
+              <columns>
+                <TableColumn prefWidth="219.2000274658203" text="id" />
+                <TableColumn prefWidth="240.0" text="name" />
+                  <TableColumn prefWidth="228.00006103515625" text="members  number" />
+              </columns>
+            </TableView>
+            <Button layoutX="16.0" layoutY="158.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="307.0" style="-fx-background-color: #e0dcf2;" text="Add new categorie">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+   <cursor>
+      <Cursor fx:constant="CLOSED_HAND" />
+   </cursor>
+</AnchorPane>
