@@ -2,6 +2,7 @@ package Controller;
 
 import Module.Module;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -103,7 +104,8 @@ public class ClientViewController {
         setCategoriesTable();
     }
 
-    private void setCategoriesTable() {
+    @FXML
+    public void setCategoriesTable() {
         //get the categories and experation date
         List<Expiration> expiration = Module.getExpiration("SELECT * FROM expiration WHERE idMembre = "+ClientController.selectedMember.getIdPersonne());
         //the expiration object have the categories of the member and it's experation date;
@@ -132,9 +134,9 @@ public class ClientViewController {
         button_add.setText("Add Offer");
         button_add.setTextFill(Paint.valueOf("#FFFF"));
         button_add.setFont(Font.font("Arial Rounded MT Bold",13.0));
-        button_add.setOnAction(event -> {
-            //Module.ajouterInsciption(idmembre,idOffre);
-        });
+        //the on action button that adds a new inscription to the data base with the selected offer and the member's id
+        button_add.setOnAction(new ButtonAddOfferClickHandler(categorieGrid,button_add));
+
         //styling button delete
         button_delete.setMnemonicParsing(false);
         button_delete.setPrefHeight(35.0);
@@ -145,8 +147,40 @@ public class ClientViewController {
         button_delete.setFont(Font.font("Arial Rounded MT Bold",13.0));
         button_delete.setOnAction(event -> {
 
-            //Module.supprimerExpiration();
+
+            int targetRow = GridPane.getRowIndex(button_delete);
+            StringBuffer selectedCategorie = new StringBuffer("no result");
+
+            for (int i = 0; i < categorieGrid.getChildren().size(); i++) {
+                Label Categorie = (Label) categorieGrid.getChildren().get(i);
+                int currentRow = GridPane.getRowIndex(Categorie);
+                int currentColumn = GridPane.getColumnIndex(Categorie);
+                //look for the categorie label in that row
+                if (currentRow == targetRow && currentColumn == 0) {
+                    selectedCategorie = new StringBuffer(Categorie.getText());
+                    break;
+                }
+            }
+
+
+
+            int idCategorie = Module.getCategorie("SELECT * FROM categorie WHERE nomCategorie = \""+selectedCategorie+"\"").get(0).getIdCategorie();
+            int idMembre = ClientController.selectedMember.getIdPersonne();
+            Module.supprimerExpiration(idMembre,idCategorie);
+            System.out.println("cat was deleted secsusfuly");
+
+
+
+
+
+
+
+
+
         });
+
+
+
         //add the buttons to the gridpane
         categorieGrid.add(button_add,2,row);
         categorieGrid.add(button_delete,3,row);
@@ -178,4 +212,71 @@ public class ClientViewController {
 
 
 }
+
+
+
+// Event handler class for button click
+class ButtonAddOfferClickHandler implements EventHandler<ActionEvent> {
+    private final Button button;
+    private final GridPane gridPane;
+
+    public static StringBuffer selectedCategorie = new StringBuffer("not changed");
+
+    public ButtonAddOfferClickHandler(GridPane gridPane, Button button) {
+        this.gridPane = gridPane;
+        this.button = button;
+    }
+
+    @Override
+    public void handle(ActionEvent event) {
+        // Retrieve the row and column index of the button
+        int targetRow = GridPane.getRowIndex(button);
+        //int targetColumn = GridPane.getColumnIndex(button);
+        int targetColumn = 0;
+        //get the categorie name
+
+        //get the Categorie label of that row
+        for (int i = 0; i < gridPane.getChildren().size(); i++) {
+            Label Categorie = (Label) gridPane.getChildren().get(i);
+            int row = GridPane.getRowIndex(Categorie);
+            int column = GridPane.getColumnIndex(Categorie);
+            //look for the categorie label in that row
+            if (row == targetRow && column == targetColumn) {
+                selectedCategorie = new StringBuffer(Categorie.getText());
+                break;
+            }
+        }
+
+        //show the popup scean :
+        try {
+            showPopup();
+        }catch (IOException e){
+            System.out.println("there was a problem in showing the popup scean of add offer button");
+            e.printStackTrace();
+        }
+
+    }
+
+    private void showPopup() throws IOException{
+        // Create a new stage for the popup GUI
+        Stage popupStage = new Stage();
+        popupStage.initModality(Modality.APPLICATION_MODAL); // Block interaction with the parent stage
+
+        // Remove default window decorations
+        //popupStage.initStyle(StageStyle.UNDECORATED);
+
+        // Load the FXML file for the popup layout
+        Parent popupLayout = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../View/addOfferPopup.fxml")));
+
+        // Create a scene and set it on the stage
+        Scene popupScene = new Scene(popupLayout);
+        popupStage.setScene(popupScene);
+
+
+
+        // Show the popup stage
+        popupStage.showAndWait();
+    }
+}
+
 

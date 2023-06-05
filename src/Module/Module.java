@@ -349,6 +349,7 @@ public class Module {
             //modifierExpiration(idMembre,idOffre);
 
 
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -796,36 +797,52 @@ public class Module {
             conn = Module.connectToDb();
 
             // Prepare the SQL statement with parameters
-            String sql = "UPDATE expiration SET moisExpiration = ? , anneeExpiration = ? " +
+            String sql = "UPDATE expiration SET jourExpiration= ?, moisExpiration = ? , anneeExpiration = ? " +
                     "WHERE idExpiration = ?";
             stmt = conn.prepareStatement(sql);
 
             //get dureeOffre by id :
-            int dureeOffre = getOffres("SELECT * FROM offre WHERE idOffre = "+idOffre).get(0).getDureeOffre();
+            Offre offer = getOffres("SELECT * FROM offre WHERE idOffre = "+idOffre).get(0);
 
-            //get idcategorie
-            int idCategorie = getOffres("SELECT * FROM offre WHERE idOffre = "+idOffre).get(0).getCategorie().getIdCategorie();
+            //set offer and categ ids
+            int dureeOffre = offer.getDureeOffre();
+            int idCategorie=offer.getCategorie().getIdCategorie();
 
             //get idExpiration
-            int idExpiration = getExpiration("SELECT * FROM expiration WHERE idCategorie = "+idCategorie+
-                    " AND idMembre = "+idMembre).get(0).getIdExpiration();
+            Expiration expiration= getExpiration("SELECT * FROM expiration WHERE idCategorie = "+idCategorie+
+                    " AND idMembre = "+idMembre).get(0);
+            int idExpiration = expiration.getIdExpiration();
+
+
+            int  oldjour= expiration.getDateExpiration().getJour();
+            int oldMois=expiration.getDateExpiration().getMois();
+            int oldAnnee=expiration.getDateExpiration().getAnnée();
+            System.out.println("month:"+oldAnnee);
+
+
+            LocalDate newDate= LocalDate.of(oldAnnee,oldMois,oldjour).plusMonths(dureeOffre);
+            System.out.println("newdate:"+newDate);
+
+            int newJour=newDate.getDayOfMonth();
+            int newMois=newDate.getMonthValue();
+            int newYear=newDate.getYear();
+
 
             // Set the parameter values for the member
-            Date dateexpiration =getExpiration("SELECT * FROM expiration WHERE idExpiration = " + idExpiration).get(0).getDateExpiration();
+            Date dateExpiration =getExpiration("SELECT * FROM expiration WHERE idExpiration = " + idExpiration).get(0).getDateExpiration();
 
-            int mois = dateexpiration.getMois();
-            int annee = dateexpiration.getAnnée();
-            mois += dureeOffre % 12;
-            annee += Math.floor(dureeOffre / 12);
 
-            stmt.setInt(1, mois);
-            stmt.setInt(2,annee);
-            stmt.setInt(3, idExpiration);
+
+            stmt.setInt(1, newJour);
+            stmt.setInt(2,newMois);
+            stmt.setInt(3, newYear);
+            stmt.setInt(4, idExpiration);
+
 
 
             // Execute the UPDATE statement
             stmt.executeUpdate();
-            modifierNbrInscrits(idCategorie);
+            //modifierNbrInscrits(idCategorie);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -834,9 +851,8 @@ public class Module {
             // Close all resources
             closeConnection(conn, stmt);
         }
-
     }
-    public static void supprimerExpiration(int idMembre, int idCategorie){
+            public static void supprimerExpiration(int idMembre, int idCategorie){
         Connection conn = null;
         PreparedStatement stmt = null;
         PreparedStatement stmt2 = null;

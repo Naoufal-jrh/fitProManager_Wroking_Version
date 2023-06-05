@@ -1,4 +1,7 @@
 
+import Controller.Date;
+import Controller.Expiration;
+import Controller.Offre;
 import Module.Module;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -6,6 +9,12 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.time.LocalDate;
+
+import static Module.Module.*;
 
 public class Main extends Application {
     @Override
@@ -19,8 +28,8 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch();
-        //Module.ajouterExpiration(13,4);
-        //Module.ajouterInsciption(13,4);
     }
+
+
 }
 

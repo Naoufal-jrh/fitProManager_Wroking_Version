@@ -3,6 +3,7 @@ package Controller;
 import Module.Module;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -22,18 +23,14 @@ public class AddCategoriePopup {
 
     @FXML
     void addCategorie(ActionEvent event) throws IOException {
-        Button button = (Button) event.getSource();
-        Parent parent = button.getScene().getRoot();
+
         System.out.println("values :   "+category.getValue()+"    "+offer.getValue());
 
         if (!Objects.equals(category.getValue(), null)&&!Objects.equals(offer.getValue(), null)){
-            Module.ajouterExpiration(ClientController.selectedMember.getIdPersonne(),Module.getOffres("SELECT * FROM offre WHERE nomOffre = "+offer.getValue()).get(0).getIdOffre());
+            Module.ajouterExpiration(ClientController.selectedMember.getIdPersonne(),Module.getOffres("SELECT * FROM offre WHERE nomOffre = \""+offer.getValue()+"\"").get(0).getIdOffre());
             Button addbutton = (Button) event.getSource();
             Stage currentStage = (Stage) addbutton.getScene().getWindow();
             currentStage.close();
-            //Navigation nv = new Navigation();
-            //nv.goTo(event,"../View/ViewClient.fxml");
-
         }
 
     }
