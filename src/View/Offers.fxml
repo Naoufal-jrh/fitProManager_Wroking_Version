@@ -66,7 +66,7 @@
                   <Font name="Arial" size="35.0" />
                </font>
             </Label>
-            <TableView fx:id="offerTable" layoutX="16.0" layoutY="275.0" prefHeight="300.0" prefWidth="707.0">
+            <TableView fx:id="offerTable" layoutX="16.0" layoutY="275.0" onMouseClicked="#modifyOffer" prefHeight="300.0" prefWidth="707.0">
                <columns>
                   <TableColumn fx:id="offerId" prefWidth="123.20004272460938" text="id" />
                   <TableColumn fx:id="offerName" prefWidth="175.20001220703125" text="name" />
@@ -74,22 +74,17 @@
                   <TableColumn fx:id="offerDuration" prefWidth="161.5999755859375" text="duration" />
                </columns>
             </TableView>
-            <Button layoutX="14.0" layoutY="202.0" mnemonicParsing="false" onAction="#toAddOffre" prefHeight="44.0" prefWidth="341.0" style="-fx-background-color: #e0dcf2;" text="Add new offer">
+            <Button layoutX="14.0" layoutY="202.0" mnemonicParsing="false" onAction="#toAddOffre" prefHeight="44.0" prefWidth="341.0" style="-fx-background-color: orange;" text="Add new offer" textFill="WHITE">
                <font>
-                  <Font size="15.0" />
+                  <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <ComboBox layoutX="16.0" layoutY="150.0" prefHeight="33.0" prefWidth="231.0" />
+            <ComboBox fx:id="category" layoutX="16.0" layoutY="150.0" onAction="#filltable" prefHeight="33.0" prefWidth="231.0" />
             <Label layoutX="16.0" layoutY="124.0" prefHeight="26.0" prefWidth="231.0" text="Select categorie:" textFill="#7b7272">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
             </Label>
-            <Button layoutX="260.0" layoutY="151.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="96.0" style="-fx-background-color: orange;" text="Search">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Button>
          </children>
       </Pane>
    </children>

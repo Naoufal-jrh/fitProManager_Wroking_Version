@@ -21,6 +21,14 @@ public class Offre {
         this.dureeOffre = dureeOffre;
         this.categorie = categorie;
     }
+    public Offre(Offre offre) {
+        this.idOffre = offre.getIdOffre();
+        this.nomOffre = offre.getNomOffre();
+        this.prixOffre = offre.getPrixOffre();
+        this.dureeOffre = offre.getDureeOffre();
+        this.categorie = offre.getCategorie();
+    }
+
 
     public int getIdOffre() {
         return idOffre;

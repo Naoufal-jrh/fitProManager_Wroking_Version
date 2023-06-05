@@ -13,9 +13,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="587.0" prefWidth="960.0" style="-fx-background-color: #ffff;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.OfferAddController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="587.0" prefWidth="960.0" style="-fx-background-color: #ffff;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.OfferModifyController">
     <children>
-        <Text fill="#ff5900" layoutX="55.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Offer">
+        <Text fill="#ff5900" layoutX="55.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modify Offer">
             <font>
                 <Font name="Arial Rounded MT Bold" size="24.0" />
             </font>
@@ -89,12 +89,23 @@
                 </VBox>
             </children>
         </GridPane>
-        <Button layoutX="55.0" layoutY="432.0" mnemonicParsing="false" onAction="#addOffer" prefHeight="50.0" prefWidth="186.0" style="-fx-background-color: #7640cc;" text="Add" textFill="WHITE">
+        <Button layoutX="300.0" layoutY="456.0" mnemonicParsing="false" onAction="#deleteOffer" prefHeight="50.0" prefWidth="186.0" style="-fx-background-color: #7640cc;" text="Delete" textFill="WHITE">
             <font>
                 <Font name="Arial Rounded MT Bold" size="18.0" />
             </font>
         </Button>
-        <Label fx:id="erorMsg" layoutX="300.0" layoutY="463.0" prefHeight="18.0" prefWidth="591.0" textFill="RED" />
+        <Label fx:id="erorMsg" layoutX="55.0" layoutY="418.0" prefHeight="18.0" prefWidth="591.0" textFill="#00ff00" />
+        <Button mnemonicParsing="false" onAction="#toOffers" prefHeight="36.0" prefWidth="35.0" style="-fx-background-color: #f44a4a;" text="X" textFill="WHITE">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="21.0" />
+            </font>
+        </Button>
+        <Button layoutX="55.0" layoutY="456.0" mnemonicParsing="false" onAction="#modifyOffer" prefHeight="50.0" prefWidth="186.0" style="-fx-background-color: #ff5900;" text="Modify" textFill="WHITE">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="18.0" />
+            </font>
+        </Button>
+        <Label fx:id="erorMsg1" layoutX="55.0" layoutY="418.0" prefHeight="18.0" prefWidth="591.0" textFill="RED" />
     </children>
     <padding>
         <Insets left="50.0" right="50.0" />
