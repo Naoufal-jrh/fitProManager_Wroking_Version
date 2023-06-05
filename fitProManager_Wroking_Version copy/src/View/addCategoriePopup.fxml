@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="147.0" prefWidth="240.0" style="-fx-background-color: #ffff;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AddCategoriePopup">
+   <children>
+      <VBox alignment="CENTER" prefHeight="155.0" prefWidth="240.0" spacing="5.0" style="-fx-background-color: #e2e2e2;">
+         <children>
+            <Label text="Choose a categorie" textFill="#3b3751">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="13.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="category" onAction="#filterOffers" prefWidth="150.0" style="-fx-background-color: #FFFF;" />
+            <Label text="Choose an offer " textFill="#3b3751">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="13.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="offer" prefWidth="150.0" style="-fx-background-color: #FFFF;" />
+            <Button mnemonicParsing="false" onAction="#addCategorie" prefHeight="31.0" prefWidth="93.0" style="-fx-background-color: orange;" text="ADD" textFill="WHITE">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
