@@ -165,7 +165,7 @@
                         <Font name="Arial Rounded MT Bold" size="16.5" />
                      </font>
                   </Label>
-                  <GridPane alignment="CENTER" layoutX="6.0" layoutY="27.0" prefHeight="200.0" prefWidth="608.0">
+                  <GridPane fx:id="categorieGrid" alignment="CENTER" layoutX="6.0" layoutY="27.0" prefHeight="200.0" prefWidth="608.0">
                     <columnConstraints>
                       <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="302.0" minWidth="10.0" prefWidth="169.0" />
                         <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="302.0" minWidth="10.0" prefWidth="181.0" />
@@ -178,88 +178,6 @@
                       <RowConstraints maxHeight="63.0" minHeight="10.0" prefHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
                     </rowConstraints>
-                     <children>
-                        <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: red;" text="Delete" textFill="WHITE" GridPane.columnIndex="3">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="13.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: green;" text="Add Offer" textFill="WHITE" GridPane.columnIndex="2">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="13.0" />
-                           </font>
-                        </Button>
-                        <Label prefHeight="20.0" prefWidth="182.0" text="Exp Date  12/20/2023" textFill="#1e1717" GridPane.columnIndex="1">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label prefHeight="20.0" prefWidth="173.0" text="Boxing" textFill="#1e1717">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label prefHeight="20.0" prefWidth="173.0" text="Boxing" textFill="#1e1717" GridPane.rowIndex="1">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label prefHeight="20.0" prefWidth="173.0" text="Boxing" textFill="#1e1717" GridPane.rowIndex="2">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label prefHeight="20.0" prefWidth="173.0" text="Boxing" textFill="#1e1717" GridPane.rowIndex="3">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label prefHeight="20.0" prefWidth="182.0" text="Exp Date  12/20/2023" textFill="#1e1717" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label prefHeight="20.0" prefWidth="182.0" text="Exp Date  12/20/2023" textFill="#1e1717" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label prefHeight="20.0" prefWidth="182.0" text="Exp Date  12/20/2023" textFill="#1e1717" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="16.0" />
-                           </font>
-                        </Label>
-                        <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: green;" text="Add Offer" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="13.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: green;" text="Add Offer" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="13.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: green;" text="Add Offer" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="13.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: red;" text="Delete" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="3">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="13.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: red;" text="Delete" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="2">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="13.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: red;" text="Delete" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="13.0" />
-                           </font>
-                        </Button>
-                     </children>
                   </GridPane>
                </children>
                <StackPane.margin>

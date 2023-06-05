@@ -1,5 +1,6 @@
 package Controller;
 
+import Module.Module;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,8 +20,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Objects;
-
-import Module.Module;
 
 public class signup_pageController {
 

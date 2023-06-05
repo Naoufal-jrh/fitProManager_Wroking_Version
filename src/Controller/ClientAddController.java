@@ -1,5 +1,6 @@
 package Controller;
 
+import Module.Module;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,8 +14,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.List;
-
-import Module.Module;
 
 public class ClientAddController  {
     private Stage stage;
@@ -93,7 +92,29 @@ public class ClientAddController  {
 
 
     public void addClient(ActionEvent event)throws IOException{
-        Membre newMembre=getInfoClient();
+        //the member to be added
+        Membre newMembre = getInfoClient();
+        //the selected offer
+        String selectedOffer = offer.getValue();
+        if(newMembre!=null && !(selectedOffer.length()==0)){
+            Offre selectedOfferObj = Module.getOffres("SELECT * FROM offre where nomOffre LIKE \""+selectedOffer+"\"").get(0);
+            //add the new member to the dataBase
+            Module.ajouterMembre(newMembre);
+            //get the idMembre and the idOffer
+            int idMembre = Module.getMembres("SELECT * FROM membre WHERE cin = \""+newMembre.getCin()+"\" " +
+                    "ORDER BY idMembre").get(0).getIdPersonne();
+            int idCategorie = Module.getCategorie("SELECT * FROM categorie where nomCategorie LIKE \""+category.getValue()+"\"").get(0).getIdCategorie();
+            int idOffer = Module.getOffres("SELECT * FROM offre WHERE nomOffre = \""+selectedOffer+"\" AND idCategorie = "+idCategorie).get(0).getIdOffre();
+
+            newMembre.setIdPersonne(idMembre);
+
+            Module.ajouterExpiration(idMembre,idOffer);
+
+        }
+
+
+
+        /*Membre newMembre=getInfoClient();
         String selectedOffer = offer.getValue();
         int ADd = convertStringToInt(adhesiondateD.getText());
         int ADm = convertStringToInt(adhesiondateM.getText());
@@ -128,7 +149,7 @@ public class ClientAddController  {
         else{
             System.out.println("data not inserted");
             erorMessage1.setText("data not inserted");
-        }
+        }*/
     }
     public static int convertStringToInt(String str) {
         try {
@@ -146,6 +167,8 @@ public class ClientAddController  {
             category.getItems().add(_Categorie.get(i).getNomCategorie());
         }
     }
+
+    @FXML
     public void filterOffers(){
         offer.getItems().clear();
         String categorie =  category.getValue();
