@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="587.0" prefWidth="960.0" style="-fx-background-color: #ffff;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.login_pageController">
+    <children>
+        <VBox alignment="CENTER" prefHeight="587.0" prefWidth="480.0" style="-fx-background-color: #EBE8F9;">
+            <children>
+                <ImageView fitHeight="200.0" fitWidth="254.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/logo.png" />
+               </image></ImageView>
+                <Label lineSpacing="1.0" prefHeight="64.0" prefWidth="168.0" text="FitPro Manger" textFill="#ffae00">
+                    <font>
+                        <Font name="Arial Rounded MT Bold" size="24.0" />
+                    </font>
+                </Label>
+            </children>
+        </VBox>
+        <Label layoutX="551.0" layoutY="33.0" lineSpacing="1.0" text="WELCOME" textFill="#ffae00">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="26.0" />
+            </font>
+        </Label>
+        <Label layoutX="551.0" layoutY="65.0" text="Sign in to continue" textFill="#7b7272">
+            <font>
+                <Font name="System Bold" size="17.0" />
+            </font>
+        </Label>
+        <TextField fx:id="email" layoutX="551.0" layoutY="190.0" prefHeight="39.0" prefWidth="291.0" />
+        <Label layoutX="709.0" layoutY="311.0" text="Forgot password?" textFill="#7b7272" textOverrun="CLIP">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="15.0" />
+            </font>
+        </Label>
+        <Button layoutX="551.0" layoutY="358.0" lineSpacing="1.0" mnemonicParsing="false" onAction="#login" prefHeight="39.0" prefWidth="291.0" style="-fx-background-color: #ffae00;" text="Log in" textAlignment="CENTER" textFill="WHITE">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="18.0" />
+            </font>
+        </Button>
+        <Label accessibleRole="BUTTON" layoutX="792.0" layoutY="407.0" onMouseClicked="#toSignupPage" prefHeight="22.0" prefWidth="50.0" text="Sign in" textAlignment="CENTER" textFill="#0062ff">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="14.0" />
+            </font>
+        </Label>
+        <PasswordField fx:id="password" layoutX="551.0" layoutY="263.0" prefHeight="39.0" prefWidth="291.0" />
+        <Label layoutX="551.0" layoutY="172.0" text="Email" />
+        <Label layoutX="550.0" layoutY="244.0" text="Password" />
+      <Label fx:id="errorLabel" layoutX="552.0" layoutY="134.0" prefHeight="17.0" prefWidth="347.0" textFill="RED" />
+    </children>
+    <cursor>
+        <Cursor fx:constant="CLOSED_HAND" />
+    </cursor>
+</AnchorPane>

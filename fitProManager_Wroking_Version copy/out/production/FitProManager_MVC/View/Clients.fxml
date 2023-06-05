@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="587.0" prefWidth="960.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ClientController">
+    <children>
+        <VBox alignment="CENTER" prefHeight="587.0" prefWidth="231.0" style="-fx-background-color: #EBE8F9;">
+            <children>
+                <Pane prefHeight="179.0" prefWidth="231.0">
+                    <children>
+                        <ImageView fitHeight="98.0" fitWidth="126.0" layoutX="53.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@Images/logo.png" />
+                            </image>
+                        </ImageView>
+                        <Label alignment="CENTER" layoutX="39.0" layoutY="80.0" lineSpacing="1.0" prefHeight="64.0" prefWidth="154.0" text="ACKJ Sport">
+                            <font>
+                                <Font name="Arial Rounded MT Bold" size="17.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </Pane>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#toHome" prefHeight="56.0" prefWidth="231.0" style="-fx-background-color: #EBE8F9;" text="HOME" textAlignment="CENTER">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="56.0" prefWidth="231.0" style="-fx-background-color: #dfdaf7;" text="CLIENTS" textAlignment="CENTER">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#toCategories" prefHeight="56.0" prefWidth="231.0" style="-fx-background-color: #EBE8F9;" text="CATEGORIES" textAlignment="CENTER">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#toOffers" prefHeight="56.0" prefWidth="231.0" style="-fx-background-color: #EBE8F9;" text="OFFERS" textAlignment="CENTER">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#toLogin" prefHeight="56.0" prefWidth="231.0" style="-fx-background-color: #EBE8F9;" text="LOG OUT" textAlignment="CENTER">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font>
+            </Button>
+            </children>
+        </VBox>
+        <Label alignment="CENTER" layoutX="442.0" layoutY="26.0" lineSpacing="1.0" prefHeight="44.0" prefWidth="332.0" text="Clients management" textFill="#4d00b9">
+            <font>
+                <Font name="Arial" size="35.0" />
+            </font>
+        </Label>
+        <Label alignment="CENTER" layoutX="245.0" layoutY="108.0" text="Search:" textFill="#7b7272">
+            <font>
+                <Font name="System Bold" size="17.0" />
+            </font>
+        </Label>
+      <GridPane layoutX="242.0" layoutY="190.0" prefHeight="382.0" prefWidth="703.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="335.40000000000003" minHeight="10.0" prefHeight="335.40000000000003" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <TableView fx:id="clientTable" onMouseClicked="#getMemberProfile" prefHeight="398.0" prefWidth="703.0">
+              <columns>
+                <TableColumn fx:id="ClientIdColumn" prefWidth="66.39997863769531" text="ID" />
+                <TableColumn fx:id="ClientLastNameColumn" prefWidth="112.00006103515625" text="Lastname" />
+                  <TableColumn fx:id="ClientFirstNameColumn" prefWidth="120.800048828125" text="Firstname" />
+                  <TableColumn fx:id="ClientCinColumn" prefWidth="75.99993896484375" text="CIN" />
+                  <TableColumn fx:id="ClientMailColumn" prefWidth="200.0" text="Mail" />
+                  <TableColumn fx:id="ClientAdateColumn" minWidth="0.0" prefWidth="129.60003662109375" text="adhesion date" />
+              </columns>
+            </TableView>
+         </children>
+      </GridPane>
+      <TextField layoutX="245.0" layoutY="131.0" prefHeight="31.0" prefWidth="394.0" />
+      <Button layoutX="818.0" layoutY="131.0" mnemonicParsing="false" onAction="#toAddClient" prefHeight="26.0" prefWidth="126.0" style="-fx-background-color: #e0dcf2;" text="add">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="639.0" layoutY="131.0" mnemonicParsing="false" onAction="#toViewClient" prefHeight="26.0" prefWidth="66.0" style="-fx-background-color: orange;" text="Search">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+    </children>
+    <cursor>
+        <Cursor fx:constant="CLOSED_HAND" />
+    </cursor>
+</AnchorPane>
