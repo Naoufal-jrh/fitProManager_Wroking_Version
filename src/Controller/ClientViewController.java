@@ -77,11 +77,12 @@ public class ClientViewController {
     }
 
     @FXML
-    void deleteMember(ActionEvent event) {
+    void deleteMember(ActionEvent event) throws IOException{
         Navigation nv = new Navigation();
         ButtonBar.ButtonData choice = nv.showAlert("Delete this member","Are you sure you want to Delete this member?");
         if (choice == OK_DONE){
             Module.supprimerMembre(ClientController.selectedMember.getIdPersonne());
+            nv.goTo(event,"../View/Clients.fxml");
         }
     }
 
@@ -131,6 +132,9 @@ public class ClientViewController {
         button_add.setText("Add Offer");
         button_add.setTextFill(Paint.valueOf("#FFFF"));
         button_add.setFont(Font.font("Arial Rounded MT Bold",13.0));
+        button_add.setOnAction(event -> {
+            //Module.ajouterInsciption(idmembre,idOffre);
+        });
         //styling button delete
         button_delete.setMnemonicParsing(false);
         button_delete.setPrefHeight(35.0);
@@ -139,6 +143,10 @@ public class ClientViewController {
         button_delete.setText("Delete");
         button_delete.setTextFill(Paint.valueOf("#FFFF"));
         button_delete.setFont(Font.font("Arial Rounded MT Bold",13.0));
+        button_delete.setOnAction(event -> {
+
+            //Module.supprimerExpiration();
+        });
         //add the buttons to the gridpane
         categorieGrid.add(button_add,2,row);
         categorieGrid.add(button_delete,3,row);

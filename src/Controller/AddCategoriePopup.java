@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Objects;
 
 public class AddCategoriePopup {
-
     @FXML
     private ComboBox<String> category;
 
@@ -26,9 +25,9 @@ public class AddCategoriePopup {
         Button button = (Button) event.getSource();
         Parent parent = button.getScene().getRoot();
         System.out.println("values :   "+category.getValue()+"    "+offer.getValue());
+
         if (!Objects.equals(category.getValue(), null)&&!Objects.equals(offer.getValue(), null)){
-            Expiration newExperation = new Expiration(ClientController.selectedMember,Module.getCategorie("SELECT * FROM categorie WHERE nomCategorie = \""+category.getValue()+"\"").get(0));
-            Module.ajouterExpiration(newExperation);
+            Module.ajouterExpiration(ClientController.selectedMember.getIdPersonne(),Module.getOffres("SELECT * FROM offre WHERE nomOffre = "+offer.getValue()).get(0).getIdOffre());
             Button addbutton = (Button) event.getSource();
             Stage currentStage = (Stage) addbutton.getScene().getWindow();
             currentStage.close();

@@ -1,5 +1,5 @@
 
-
+import Module.Module;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -19,6 +19,8 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch();
+        //Module.ajouterExpiration(13,4);
+        //Module.ajouterInsciption(13,4);
     }
 }
 

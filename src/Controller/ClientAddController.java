@@ -92,7 +92,29 @@ public class ClientAddController  {
 
 
     public void addClient(ActionEvent event)throws IOException{
-        Membre newMembre=getInfoClient();
+        //the member to be added
+        Membre newMembre = getInfoClient();
+        //the selected offer
+        String selectedOffer = offer.getValue();
+        if(newMembre!=null && !(selectedOffer.length()==0)){
+            Offre selectedOfferObj = Module.getOffres("SELECT * FROM offre where nomOffre LIKE \""+selectedOffer+"\"").get(0);
+            //add the new member to the dataBase
+            Module.ajouterMembre(newMembre);
+            //get the idMembre and the idOffer
+            int idMembre = Module.getMembres("SELECT * FROM membre WHERE cin = \""+newMembre.getCin()+"\" " +
+                    "ORDER BY idMembre").get(0).getIdPersonne();
+            int idCategorie = Module.getCategorie("SELECT * FROM categorie where nomCategorie LIKE \""+category.getValue()+"\"").get(0).getIdCategorie();
+            int idOffer = Module.getOffres("SELECT * FROM offre WHERE nomOffre = \""+selectedOffer+"\" AND idCategorie = "+idCategorie).get(0).getIdOffre();
+
+            newMembre.setIdPersonne(idMembre);
+
+            Module.ajouterExpiration(idMembre,idOffer);
+
+        }
+
+
+
+        /*Membre newMembre=getInfoClient();
         String selectedOffer = offer.getValue();
         int ADd = convertStringToInt(adhesiondateD.getText());
         int ADm = convertStringToInt(adhesiondateM.getText());
@@ -127,7 +149,7 @@ public class ClientAddController  {
         else{
             System.out.println("data not inserted");
             erorMessage1.setText("data not inserted");
-        }
+        }*/
     }
     public static int convertStringToInt(String str) {
         try {

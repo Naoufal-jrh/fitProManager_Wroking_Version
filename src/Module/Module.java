@@ -211,6 +211,8 @@ public class Module {
 
         Connection conn = null;
         PreparedStatement stmt = null;
+        PreparedStatement stmt2 = null;
+        PreparedStatement stmt3 = null;
 
         try {
 
@@ -219,12 +221,22 @@ public class Module {
 
             // Prepare the SQL statement with parameter
             String sql = "DELETE FROM membre WHERE idMembre = ?";
+            String sql2 = "DELETE FROM inscription WHERE idmembre = ?";
+            String sql3 = "DELETE FROM expiration WHERE idmembre = ?";
             stmt = conn.prepareStatement(sql);
+            stmt2 = conn.prepareStatement(sql2);
+            stmt3 = conn.prepareStatement(sql3);
+
 
             // Set the parameter value for the member's ID
             stmt.setInt(1, id);
+            stmt2.setInt(1, id);
+            stmt3.setInt(1, id);
+
 
             // Execute the DELETE statement
+            stmt2.executeUpdate();
+            stmt3.executeUpdate();
             stmt.executeUpdate();
 
         } catch (SQLException e) {
@@ -293,25 +305,38 @@ public class Module {
         return new ArrayList<>();
     }
 
-    public static void ajouterInsciption(Inscription inscription){
+    public static void ajouterInsciption(int idMembre , int idOffre){
 
         Connection conn = null;
         PreparedStatement stmt = null;
-
         try {
 
 
             // Establish the connection
             conn = Module.connectToDb();
-
             // Prepare the SQL statement with parameters
             String sql = "INSERT INTO inscription ( jourInscription, moisInscription, anneeInscription," +
                     "idMembre , idOffre)" +
                     " VALUES (?,?,?,?,?)";
             stmt = conn.prepareStatement(sql);
 
+            //get membre
+            Membre membre = getMembres("SELECT * FROM membre WHERE idMembre = "+idMembre).get(0);
+
+            //get offre
+            Offre offre = getOffres("SELECT * FROM offre WHERE idOffre = "+idOffre).get(0);
+
+            //set Date
+            LocalDate newDate = LocalDate.now(); // add duree offre to current date
+            int jour = newDate.getDayOfMonth();
+            int mois = newDate.getMonthValue();
+            int annee = newDate.getYear();
+            Date dateinscription = new Date(jour,mois,annee);
+
+            //set inscription
+            Inscription inscription = new Inscription(offre,membre,dateinscription);
+
             // Set the parameter values for the book
-            System.out.println(inscription.getMembre().getIdPersonne());
 
             stmt.setInt(1, inscription.getDateInscription().getJour());
             stmt.setInt(2, inscription.getDateInscription().getMois());
@@ -321,6 +346,7 @@ public class Module {
 
             // Execute the INSERT statement
             stmt.executeUpdate();
+            //modifierExpiration(idMembre,idOffre);
 
 
         } catch (SQLException e) {
@@ -419,6 +445,7 @@ public class Module {
 
         Connection conn = null;
         PreparedStatement stmt = null;
+        PreparedStatement stmt2 = null;
 
         // Close all resources
         try {
@@ -428,13 +455,20 @@ public class Module {
 
             // Prepare the SQL statement with parameter
             String sql = "DELETE FROM offre WHERE idOffre = ?";
+            String sql2 = "DELETE FROM inscription WHERE idOffre = ?";
+
+
             stmt = conn.prepareStatement(sql);
+            stmt2 = conn.prepareStatement(sql2);
 
             // Set the parameter value for the member's ID
             stmt.setInt(1, id);
+            stmt2.setInt(1, id);
 
             // Execute the DELETE statement
+            stmt2.executeUpdate();
             stmt.executeUpdate();
+
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -559,7 +593,7 @@ public class Module {
 
     }
 
-    public static void modifierCategorie(int id, Categorie newCategorie) {
+    public static void modifierNbrInscrits(int id) {
 
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -569,11 +603,11 @@ public class Module {
             conn = Module.connectToDb();
 
             // Prepare the SQL statement with parameters
-            String sql = "UPDATE categorie SET nomCategorie = ? WHERE idCategorie = ?";
+            String sql = "UPDATE categorie SET nbrMembres = ? WHERE idCategorie = ?";
             stmt = conn.prepareStatement(sql);
 
             // Set the parameter values for the member
-            stmt.setString(1, newCategorie.getNomCategorie());
+            stmt.setInt(1,getNbrMembreCategorie(id));
             stmt.setInt(2, id);
 
 
@@ -594,6 +628,7 @@ public class Module {
 
         Connection conn = null;
         PreparedStatement stmt = null;
+        PreparedStatement stmt2 = null;
 
         // Close all resources
         try {
@@ -603,12 +638,18 @@ public class Module {
 
             // Prepare the SQL statement with parameter
             String sql = "DELETE FROM categorie WHERE idCategorie = ?";
+            String sql2 = "DELETE FROM offre WHERE idCategorie = ?";
+
             stmt = conn.prepareStatement(sql);
+            stmt2 = conn.prepareStatement(sql2);
 
             // Set the parameter value for the member's ID
             stmt.setInt(1, id);
+            stmt2.setInt(1, id);
+
 
             // Execute the DELETE statement
+            stmt2.executeUpdate();
             stmt.executeUpdate();
 
         } catch (SQLException e) {
@@ -684,7 +725,7 @@ public class Module {
                 List<Membre> membre = getMembres("SELECT * FROM membre WHERE idMembre=" + idMembre);
                 List<Categorie> categorie = getCategorie("SELECT * FROM categorie WHERE idCategorie=" + idCategorie);
 
-                Controller.Date DateExpiration = new Controller.Date(jourExpiration, moisExpiration, anneeExpiration);
+                Date DateExpiration = new Date(jourExpiration, moisExpiration, anneeExpiration);
 
                 Expiration expiration = new Expiration(idExpiration, membre.get(0), categorie.get(0), DateExpiration);
                 expirations.add(expiration);
@@ -701,7 +742,7 @@ public class Module {
 
     }
 
-    public static void ajouterExpiration(Expiration expiration) {
+    public static void ajouterExpiration(int idMembre,int idOffre) {
 
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -714,14 +755,11 @@ public class Module {
                     "idMembre , idCategorie)" +
                     " VALUES (?,?,?,?,?)";
 
-            List<Offre> offres = getOffres(
-                    "SELECT * FROM offre WHERE idCategorie=" + expiration.getCategorie().getIdCategorie());
-            int duree = 0;
-            for (Offre offre : offres) {
-                duree += offre.getDureeOffre();
-            }
+            int idCategorie = getOffres("SELECT * FROM offre WHERE idOffre=" +idOffre).get(0).getCategorie().getIdCategorie();
+            int duree = getOffres("SELECT * FROM offre WHERE idOffre=" +idOffre).get(0).getDureeOffre();
 
-            LocalDate newDate = LocalDate.now().plusDays(duree); // add duree offres to current date
+
+            LocalDate newDate = LocalDate.now().plusMonths(duree); // add duree offre to current date
 
             int jourExpiration = newDate.getDayOfMonth();
             int moisExpiration = newDate.getMonthValue();
@@ -732,12 +770,13 @@ public class Module {
             stmt.setInt(1, jourExpiration);
             stmt.setInt(2, moisExpiration);
             stmt.setInt(3, anneeExpiration);
-            stmt.setInt(4, expiration.getMembre().getIdPersonne());
-            stmt.setInt(5, expiration.getCategorie().getIdCategorie());
+            stmt.setInt(4, idMembre);
+            stmt.setInt(5, idCategorie);
 
             // Execute the INSERT statement
             stmt.executeUpdate();
 
+            ajouterInsciption(idMembre,idOffre);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -747,7 +786,7 @@ public class Module {
         }
 
     }
-    public static void modifierExpiration(int id, Offre newoffre){
+    public static void modifierExpiration(int idMembre , int idOffre){
 
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -761,20 +800,32 @@ public class Module {
                     "WHERE idExpiration = ?";
             stmt = conn.prepareStatement(sql);
 
+            //get dureeOffre by id :
+            int dureeOffre = getOffres("SELECT * FROM offre WHERE idOffre = "+idOffre).get(0).getDureeOffre();
+
+            //get idcategorie
+            int idCategorie = getOffres("SELECT * FROM offre WHERE idOffre = "+idOffre).get(0).getCategorie().getIdCategorie();
+
+            //get idExpiration
+            int idExpiration = getExpiration("SELECT * FROM expiration WHERE idCategorie = "+idCategorie+
+                    " AND idMembre = "+idMembre).get(0).getIdExpiration();
+
             // Set the parameter values for the member
-            Date dateexpiration =getExpiration("SELECT * FROM expiration WHERE idExpiration = " + id).get(0).getDateExpiration();
+            Date dateexpiration =getExpiration("SELECT * FROM expiration WHERE idExpiration = " + idExpiration).get(0).getDateExpiration();
+
             int mois = dateexpiration.getMois();
             int annee = dateexpiration.getAnnée();
-            mois += newoffre.getDureeOffre() % 12;
-            annee += Math.floor(newoffre.getDureeOffre() / 12);
+            mois += dureeOffre % 12;
+            annee += Math.floor(dureeOffre / 12);
 
             stmt.setInt(1, mois);
             stmt.setInt(2,annee);
-            stmt.setInt(3, id);
+            stmt.setInt(3, idExpiration);
 
 
             // Execute the UPDATE statement
             stmt.executeUpdate();
+            modifierNbrInscrits(idCategorie);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -785,10 +836,68 @@ public class Module {
         }
 
     }
+    public static void supprimerExpiration(int idMembre, int idCategorie){
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        PreparedStatement stmt2 = null;
 
+        // Close all resources
+        try {
+
+            // Establish the connection
+            conn = Module.connectToDb();
+
+            // Prepare the SQL statement with parameter
+            String sql = "DELETE FROM expiration WHERE idMembre = ? AND idCategorie = ?";
+
+            stmt = conn.prepareStatement(sql);
+
+            // Set the parameter value for the member's ID
+            stmt.setInt(1, idMembre);
+            stmt.setInt(2, idCategorie);
+
+            // Execute the DELETE statement
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            // Close all resources
+            closeConnection(conn, stmt);
+
+        }
+
+    }
+    public static int getNbrMembreCategorie(int idCategorie) {
+
+        Connection conn = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = Module.connectToDb();
+
+            String query = "SELECT COUNT(idExpiration) AS nbrinscrits FROM expiration WHERE idCategorie =" + idCategorie;
+
+            stmt = conn.createStatement();
+
+            // Execute a query to retrieve all books
+            rs = stmt.executeQuery(query);
+
+            return rs.getInt("nbrInscrits");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+
+            // Close all resources
+            closeConnection(conn, stmt, rs);
+        }
+        return -1;
+    }
 
 }
-
 
 
 
